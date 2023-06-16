@@ -9,10 +9,45 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "esModuleInterop": true,
-    "lib": ["ESNext", "DOM"],
+    "lib": [
+      "ESNext",
+      "DOM"
+    ],
     "skipLibCheck": true,
-    "noEmit": true
+    "noEmit": true,
+    "sourceMap": true,
+    "baseUrl": ".",
+    "allowJs": false,
+    "paths": {
+      "@/*": [
+        "src/*"
+      ],
+      "@build/*": [
+        "build/*"
+      ],
+    },
+    "types": [
+      "node",
+      "vite/client",
+      "element-plus/global"
+    ]
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "types/*.d.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "**/*.js",
+    "**/*.cjs"
+  ],
+  "references": [
+    {
+      "path": "./tsconfig.node.json"
+    }
+  ]
 }

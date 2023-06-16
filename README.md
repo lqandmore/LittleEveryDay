@@ -1,18 +1,47 @@
-# Vue 3 + TypeScript + Vite
+vite+vue+ts的模板项目，并且配置了一些常用的三方库
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
 
-## Recommended IDE Setup
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
 
-## Type Support For `.vue` Imports in TS
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
 
-1. Disable the built-in TypeScript Extension
-   1. Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-   2. Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+#### element-plus
+[自动导入](https://element-plus.gitee.io/zh-CN/guide/quickstart.html)
+添加对volar的支持
+``` json
+// tsconfig.json
+{
+  // ...
+  "compilerOptions": {
+    // ...
+    "types": ["element-plus/global"]
+  }
+}
+```
+自动导入element-plus的组件，首先安装两个插件，unplugin-vue-components用于自动导入组件，unplugin-auto-import用于自动导入组件的样式
+``` ruby
+   pnpm install -D unplugin-vue-components unplugin-auto-import
+```
+
+然后再vite.config.ts中配置
+``` typescript
+// vite.config.ts
+import { defineConfig } from 'vite'
+import AutoImport from 'unplugin-auto-import/vite'
+import Components from 'unplugin-vue-components/vite'
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+
+export default defineConfig({
+  // ...
+  plugins: [
+    // ...
+    AutoImport({
+      resolvers: [ElementPlusResolver()],
+    }),
+    Components({
+      resolvers: [ElementPlusResolver()],
+    }),
+  ],
+})
+```

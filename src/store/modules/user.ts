@@ -4,7 +4,7 @@ import { userType } from "./types"
 import { storageSession } from "@pureadmin/utils"
 import {type DataInfo,sessionKey,setToken } from "utils/auth"
 import { UserResult, getLogin } from "@/api/user"
-
+import { store } from "@/store"
 
 export const useUserStore = defineStore({
   id: "user",
@@ -43,3 +43,8 @@ export const useUserStore = defineStore({
 
   }
 })
+
+export function useUserStoreHook() {
+  return useUserStore(store)
+}
+

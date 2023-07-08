@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.1.0",
+    "@pureadmin/table": "^2.3.2",
     "@pureadmin/utils": "^1.9.2",
     "@types/node": "^18.15.11",
     "animate.css": "^4.1.1",

@@ -3,6 +3,8 @@ import { UserFilled, Lock, Checked } from "@element-plus/icons-vue";
 import { ref } from "vue";
 import ReImageVerity from "@/components/ReImageVerify/src/index.vue";
 import { thirdParty } from "./utils/enums";
+import { FormInstance } from "element-plus";
+import { useUserStoreHook } from "@/store/modules/user";
 const url = "https://vuejs.org/images/logo.png";
 const ruleForm = reactive({
   userName: "admin",
@@ -11,8 +13,33 @@ const ruleForm = reactive({
 });
 const imgCode = ref("");
 const isSavePassword = ref(false);
+const loading = ref(false);
 
 const titles = ["手机登录", "二维码登录", "注册"];
+
+const onLogin = async (formEl: FormInstance | undefined) => {
+  loading.value = true;
+  if (!formEl) return;
+  await formEl.validate((valid, fields) => {
+    if (valid) {
+      useUserStoreHook().loginByUserName({userName: ruleForm.userName, password: ruleForm.password})
+      .then(res => {
+        if (res.success) {
+          initRouter().then(() => {
+            loading.value = false;
+            router.push({path: '/'})
+          })
+        }
+      })
+    }else {
+      loading.value = false;
+      return;
+    }
+    console.log(ruleForm);
+  });
+}
+
+
 </script>
 <template>
   <div class="login">
@@ -67,7 +94,7 @@ const titles = ["手机登录", "二维码登录", "注册"];
             <el-button type="primary" link>忘记密码?</el-button>
           </div>
           <div class="loginBtn">
-            <el-button class="w-full" type="primary">登录</el-button>
+            <el-button class="w-full" type="primary" :loaidng="loading">登录</el-button>
           </div>
           <div class="loginSpace">
             <template v-for="title in titles" :key="title">

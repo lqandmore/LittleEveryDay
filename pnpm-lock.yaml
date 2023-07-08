@@ -8,6 +8,9 @@ dependencies:
   '@element-plus/icons-vue':
     specifier: ^2.1.0
     version: 2.1.0(vue@3.3.4)
+  '@pureadmin/table':
+    specifier: ^2.3.2
+    version: 2.3.2(element-plus@2.3.5)
   '@pureadmin/utils':
     specifier: ^1.9.2
     version: 1.9.2(echarts@5.4.2)(vue@3.3.4)
@@ -530,6 +533,15 @@ packages:
   /@polka/url@1.0.0-next.21:
     resolution: {integrity: sha512-a5Sab1C4/icpTZVzZc5Ghpz88yQtGOyNqYXcZgOssB2uuAr+wF/MvN6bgtW32q7HHrvBki+BsZ0OuNv6EV3K9g==}
     dev: true
+
+  /@pureadmin/table@2.3.2(element-plus@2.3.5):
+    resolution: {integrity: sha512-oaMf8X4bv5KPcO4li+bO7W28BS5IMy+zxPpPNh/Tdxewc2dykvoqqpRIAiS8prJOHxI42/77xbjoGb+lwQH5aA==}
+    peerDependencies:
+      element-plus: ^2.0.0
+    dependencies:
+      element-plus: 2.3.5(vue@3.3.4)
+      vue: 3.3.4
+    dev: false
 
   /@pureadmin/utils@1.9.2(echarts@5.4.2)(vue@3.3.4):
     resolution: {integrity: sha512-SI4jbyI0ahDpaO+XZfBTdan367OG7Lb3htuTTlfvSBGWglYVbcjL1B0TKDiVYIZcCC8qygCy2IMZ0q5dainQ2w==}

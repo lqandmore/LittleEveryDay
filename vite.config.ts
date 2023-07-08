@@ -23,7 +23,8 @@ const alias: Record<string, string> = {
   router: pathResovle("src/router"),
   utils: pathResovle("src/utils"),
   hooks: pathResovle("src/hooks"),
-  styles: pathResovle("src/styles")
+  styles: pathResovle("src/styles"),
+  api: pathResovle("src/api")
 };
 
 // https://vitejs.dev/config/

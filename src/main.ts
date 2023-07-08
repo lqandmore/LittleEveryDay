@@ -3,7 +3,7 @@ import "./style.css";
 import App from "./App.vue";
 // 一定要在main.ts中导入tailwind.css，防止vite每次hmr都会请求src/style/index.scss整体css文件导致热更新慢的问题
 import "./style/tailwind.css";
-import { createPinia } from "pinia";
+import { setupStore } from "./store";
 
 const app = createApp(App);
 
@@ -16,6 +16,5 @@ import {
 app.component("IconifyIconOffline", IconifyIconOffline);
 app.component("IconifyIconOnline", IconifyIconOnline);
 app.component("FontIcon", FontIcon);
-const pinia = createPinia();
-app.use(pinia);
+setupStore(app);
 app.mount("#app");
